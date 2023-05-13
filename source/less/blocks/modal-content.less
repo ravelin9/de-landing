@@ -1,0 +1,337 @@
+.modal-content__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+  position: absolute;
+  justify-content: center;
+  padding: 56px;
+  background-color: @white;
+  border-radius: 10px;
+  box-shadow: 5px 10px 50px rgb(16 112 177 / 20%);
+  opacity: 0;
+  pointer-events: none;
+  top: -100%;
+
+  @media (max-width: 600px) {
+    max-width: unset;
+    width: unset;
+    padding: 15px;
+  }
+}
+
+.modal-content__body--noscroll {
+  overflow: hidden;
+}
+
+.modal-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  visibility: hidden;
+  transition: background-color 0.3s ease-in-out, visibility 0s 0.75s;
+}
+
+.modal-content__open {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: fixed;
+  min-height: 100%;
+  top: 0;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-family: "Gilroy", "Arial", sans-serif;
+
+  @media (max-width: 1340px) {
+    padding-top: 20px;
+    justify-content: flex-start;
+  }
+}
+
+.modal-content__form--open {
+  opacity: 1;
+  top: 0;
+  pointer-events: all;
+  transition: top 0.5s ease-in-out;
+  animation: fadeIn 0.5s;
+  box-shadow: 5px 10px 50px rgba(16, 112, 177, 0.2);
+  position: relative;
+}
+
+.modal-content.modal-content__open {
+  visibility: visible;
+  transition: none;
+  overflow-y: auto;
+}
+
+.modal-content__body--noscroll .modal-content__form--open {
+  top: 0;
+}
+
+.modal-content__title {
+  font-size: 20px;
+  line-height: 30px;
+  color: @cyan--blue;
+}
+
+.modal-content__send {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__label {
+  font-size: 16px;
+  line-height: 30px;
+  color: @cyan--blue;
+  opacity: 0.5;
+  margin-bottom: 8px;
+}
+
+.modal__name {
+  opacity: 0.4;
+  border: 1px solid @blue;
+  border-radius: 10px;
+}
+
+.modal__placeholder::placeholder {
+  opacity: 0.2;
+  color: @cyan--blue;
+  font-size: 16px;
+  line-height: 30px;
+  padding-left: 36px;
+}
+
+.modal__placeholder {
+  border-radius: 10px;
+  border: 1px solid @blue;
+  width: 100%;
+  padding-left: 50px;
+  max-width: 326px;
+  padding-right: 50px;
+
+  @media (max-width: 600px) {
+    width: unset;
+    max-width: unset;
+  }
+
+  &:valid {
+    border: 1px solid @blue;
+  }
+
+  &:focus:valid {
+    border: 1px solid @blue;
+  }
+
+  &:focus:invalid {
+    border-color: @red;
+  }
+
+  &:focus:required:valid {
+    border: 1px solid @blue;
+  }
+
+  &:invalid:not(:placeholder-shown):not(:focus) {
+    animation: shake 0.6s ease-in-out;
+    border-color: @red;
+  }
+  &.invalid {
+    animation: shake 0.6s ease-in-out;
+    border-color: @red;
+  }
+
+}
+
+.modal__submit--button {
+  box-shadow: 5px 20px 50px rgba(16, 112, 177, 0.2);
+  border-radius: 10px;
+  background-color: @blue--middle;
+  border: none;
+  cursor: pointer;
+  color: @white;
+  width: 100%;
+  max-width: 428px;
+  padding-top: 27px;
+  padding-bottom: 27px;
+  transition: 0.5s ease;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 1140px) {
+    max-width: unset;
+    width: unset;
+  }
+}
+
+.modal__textarea {
+  margin-bottom: 72px;
+  padding-top: 30px;
+  padding-bottom: 50px;
+  resize: none;
+}
+
+.modal__placeholder--padding {
+  padding-top: 26px;
+  padding-bottom: 26px;
+  margin-bottom: 32px;
+}
+
+.modal-content__block {
+  display: flex;
+  flex-direction: row;
+}
+
+.modal-content__button {
+  width: fit-content;
+  cursor: pointer;
+  transition: opacity ease 0.5s;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+
+  @media (max-width: 1140px) {
+    right: 19px;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: @blue;
+  }
+
+  &::after {
+    transform: rotate(45deg);
+  }
+
+  &::before {
+    transform: rotate(-45deg);
+    margin-bottom: -2px;
+  }
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+
+.modal-content__wrapper {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.modal-content__message {
+  font-family: "Gilroy", "Arial", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.modal-content__message--success {
+  ::before {
+    content: "";
+    position: absolute;
+    top: -150px;
+    left: 50%;
+    width: 109px;
+    height: 122px;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: translateX(-50%);
+  }
+}
+
+.modal-content__message--error {
+  ::before {
+    content: "";
+    position: absolute;
+    top: -150px;
+    left: 50%;
+    width: 109px;
+    height: 122px;
+    background-image: url("../../../public/img/false.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: translateX(-50%);
+  }
+}
+
+.modal-content__message--button {
+  box-shadow: 5px 20px 50px rgb(16 112 177 / 20%);
+  border-radius: 10px;
+  background-color: @blue--middle;
+  border: none;
+  cursor: pointer;
+  color: @white;
+  width: 100%;
+  max-width: 250px;
+  padding-top: 27px;
+  padding-bottom: 27px;
+}
+
+.modal-content__text {
+  margin-bottom: 50px;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999999999999;
+}
+
+.loader:after {
+  content: '';
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid #ccc;
+  border-top-color: #333;
+  animation: loader-rotate 1s infinite linear;
+}
+
+@keyframes loader-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
